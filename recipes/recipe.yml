@@ -6,7 +6,7 @@ name: fedora-xfce
 description: Mi distribución atómica personalizada con escritorio Xfce.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/fedora-穩/kinoite
+base-image: ghcr.io/fedora-long/kinoite
 image-version: 44
 
 # module configuration, executed in order
