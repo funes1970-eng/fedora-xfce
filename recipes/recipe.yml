@@ -14,6 +14,7 @@ image-version: 44
 modules:
   - type: rpm-ostree
     files:
+      # 1. ENTORNO DE ESCRITORIO XFCE NATIVO Y COMPLETO
       - xfce4-session
       - xfce4-panel
       - xfwm4
@@ -23,41 +24,39 @@ modules:
       - xfce4-settings
       - xfce4-power-manager
       - xfconf
-      - lightdm                # Gestor de inicio de sesión ligero
-      - lightdm-gtk-greeter    # Interfaz visual para LightDM
-      - network-manager-applet # Icono de red para el panel de Xfce
-      # Soporte de idioma Español para el Sistema y Xfce
-      - langpacks-es
-      - xfce4-l10n
-      # Plataforma de Juegos
+      - lightdm
+      - lightdm-gtk-greeter
+      - network-manager-applet
+
+      # 2. CAPA DE JUEGOS Y COMPATIBILIDAD (WINE COMPLETO CON SOPORTE i386)
       - lutris
-      # Wine Completo con dependencias y soporte de 32 bits (i686)
       - wine
       - wine-core.i686
       - wine-core.x86_64
       - wine-common
       - wine-desktop
-      - wine-dxvk
       - wine-fonts
       - wine-gecko
       - wine-mono
-      - wine-tweak
       - glibc.i686
-      - pipewire-utils
-      - mesa-dri-drivers.i686
-      - mesa-vulkan-drivers.i686
-      # Controladores y Aceleración por Hardware para Radeon HD 4550 (X11/OpenGL)
+
+      # 3. CONTROLADORES CLÁSICOS Y ACELERACIÓN GRÁFICA (RADEON HD 4550)
       - xorg-x11-drv-ati
       - mesa-dri-drivers
       - mesa-dri-drivers.i686
       - libva-vdpau-driver
       - libva-vdpau-driver.i686
       - mesa-vdpau-drivers
-      - mesa-vdpau-drivers.i686
-      # Optimizaciones específicas para el Intel Core 2 Duo
-      - microcode_ctl        # Actualizaciones de estabilidad críticas de Intel para la CPU
-      - lm_sensors           # Monitoreo de temperatura para evitar sobrecalentamiento
-      - irqbalance           # Distribuye la carga de interrupciones eficientemente entre los 2 núcleos
+      - mesa-vau-drivers.i686
+
+      # 4. OPTIMIZACIONES PARA INTEL CORE 2 DUO E6550
+      - microcode_ctl        # Microcódigo oficial de Intel para parches de estabilidad
+      - lm_sensors           # Control de temperaturas de hardware viejo
+      - irqbalance           # Distribución eficiente de hilos en CPU de 2 núcleos
+
+      # 5. SOPORTE DE IDIOMA DESDE LA INSTALACIÓN
+      - langpacks-es
+      - xfce4-l10n
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
@@ -71,8 +70,9 @@ modules:
         - starship
     remove:
       packages:
-        - plasma-desktop         # Removemos el escritorio de KDE base para aligerar la imagen
-        - sddm                   # Quitamos el gestor de arranque de KDE para usar LightDM
+        - plasma-desktop       # Quitamos el escritorio pesado de KDE Kinoite base
+        - sddm                 # Quitamos el gestor de KDE para usar LightDM
+        - mesa-vulkan-drivers  # Descartado: Tu hardware no posee soporte para Vulkan
         # example: removing firefox (in favor of the flatpak)
         # "firefox" is the main package, "firefox-langpacks" is a dependency
         - firefox
