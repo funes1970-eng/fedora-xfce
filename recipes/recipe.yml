@@ -1,12 +1,12 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 # image will be published to ghcr.io/<user>/<name>
-name: fedora-xfce
+name: fedora-xfce44-legacy
 # description will be included in the image's metadata
-description: Mi distribución atómica personalizada con escritorio Xfce.
+description: Sistema inmutable optimizado para Intel Core 2 Duo E6550, Radeon HD 4550 y juegos con Wine/Lutris.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/fedora-long/kinoite
+base-image: ghcr.io/fedora-lang/kinoite
 image-version: 44
 
 # module configuration, executed in order
