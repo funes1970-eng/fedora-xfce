@@ -1,19 +1,48 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 # image will be published to ghcr.io/<user>/<name>
-name: template
+name: fedora-xfce
 # description will be included in the image's metadata
-description: This is my personal OS image.
+description: Mi distribución atómica personalizada con escritorio Xfce.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
-image-version: latest # You can pin to a specific version of Fedora as well
+base-image: ghcr.io/fedora-穩/kinoite
+image-version: 44
 
 # module configuration, executed in order
 # you can include multiple instances of the same module
 modules:
-  - type: files
+  - type: rpm-ostree
     files:
+      - xfce4-session
+      - xfce4-panel
+      - xfwm4
+      - xfdesktop
+      - thunar
+      - xfce4-terminal
+      - xfce4-settings
+      - xfce4-power-manager
+      - xfconf
+      - lightdm                # Gestor de inicio de sesión ligero
+      - lightdm-gtk-greeter    # Interfaz visual para LightDM
+      - network-manager-applet # Icono de red para el panel de Xfce
+      # Plataforma de Juegos
+      - lutris
+      # Wine Completo con dependencias y soporte de 32 bits (i686)
+      - wine
+      - wine-core.i686
+      - wine-core.x86_64
+      - wine-common
+      - wine-desktop
+      - wine-dxvk
+      - wine-fonts
+      - wine-gecko
+      - wine-mono
+      - wine-tweak
+      - glibc.i686
+      - pipewire-utils
+      - mesa-dri-drivers.i686
+      - mesa-vulkan-drivers.i686
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
@@ -27,6 +56,8 @@ modules:
         - starship
     remove:
       packages:
+        - plasma-desktop         # Removemos el escritorio de KDE base para aligerar la imagen
+        - sddm                   # Quitamos el gestor de arranque de KDE para usar LightDM
         # example: removing firefox (in favor of the flatpak)
         # "firefox" is the main package, "firefox-langpacks" is a dependency
         - firefox
@@ -38,8 +69,10 @@ modules:
         scope: system
         # If no repo information is specified, Flathub will be used by default
         install: # system flatpaks we want all users to have and not remove
-          - org.mozilla.firefox
-          - org.gnome.Loupe
+      - com.brave.Browser
+      - org.telegram.desktop
+      - org.videolan.VLC
+      - org.freedesktop.Platform.ffmpeg6  # Runtime de FFmpeg para Flatpak
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
