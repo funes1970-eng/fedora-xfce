@@ -70,9 +70,9 @@ modules:
         - starship
     remove:
       packages:
-        - plasma-desktop       # Quitamos el escritorio pesado de KDE Kinoite base
-        - sddm                 # Quitamos el gestor de KDE para usar LightDM
-        - mesa-vulkan-drivers  # Descartado: Tu hardware no posee soporte para Vulkan
+        - gnome-shell        # Eliminamos la interfaz pesada de GNOME
+        - gdm                # Eliminamos el gestor de inicio de GNOME para usar LightDM
+        - mesa-vulkan-drivers  # Descartado para tu Radeon HD 4550
         # example: removing firefox (in favor of the flatpak)
         # "firefox" is the main package, "firefox-langpacks" is a dependency
         - firefox
