@@ -26,6 +26,9 @@ modules:
       - lightdm                # Gestor de inicio de sesión ligero
       - lightdm-gtk-greeter    # Interfaz visual para LightDM
       - network-manager-applet # Icono de red para el panel de Xfce
+      # Soporte de idioma Español para el Sistema y Xfce
+      - langpacks-es
+      - xfce4-l10n
       # Plataforma de Juegos
       - lutris
       # Wine Completo con dependencias y soporte de 32 bits (i686)
