@@ -87,7 +87,7 @@ modules:
       - com.brave.Browser
       - org.telegram.desktop
       - org.videolan.VLC
-      - org.freedesktop.Platform.ffmpeg6  #  Runtime de FFmpeg para Flatpak
+      - org.freedesktop.Platform.ffmpeg6  # Runtime de FFmpeg para Flatpak
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
