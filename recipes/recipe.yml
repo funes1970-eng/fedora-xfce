@@ -43,6 +43,18 @@ modules:
       - pipewire-utils
       - mesa-dri-drivers.i686
       - mesa-vulkan-drivers.i686
+      # Controladores y Aceleración por Hardware para Radeon HD 4550 (X11/OpenGL)
+      - xorg-x11-drv-ati
+      - mesa-dri-drivers
+      - mesa-dri-drivers.i686
+      - libva-vdpau-driver
+      - libva-vdpau-driver.i686
+      - mesa-vdpau-drivers
+      - mesa-vdpau-drivers.i686
+      # Optimizaciones específicas para el Intel Core 2 Duo
+      - microcode_ctl        # Actualizaciones de estabilidad críticas de Intel para la CPU
+      - lm_sensors           # Monitoreo de temperatura para evitar sobrecalentamiento
+      - irqbalance           # Distribuye la carga de interrupciones eficientemente entre los 2 núcleos
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
