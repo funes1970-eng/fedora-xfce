@@ -13,7 +13,7 @@ image-version: 44
 # you can include multiple instances of the same module
 modules:
   - type: rpm-ostree
-    files:
+    install:
       # 1. ENTORNO DE ESCRITORIO XFCE NATIVO Y COMPLETO
       - xfce4-session
       - xfce4-panel
