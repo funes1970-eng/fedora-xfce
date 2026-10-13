@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 set -joeux pipefail
 
-# Asegurar que LightDM (Xfce) reemplace por completo al gestor de KDE (SDDM)
+# 1. Forzar el inicio de sesión a través de LightDM (Xfce) en vez de SDDM
 systemctl disable sddm.service || true
 systemctl enable lightdm.service
-# Forzar el uso del driver clásico radeon en el arranque
+
+# 2. Forzar la inicialización correcta del driver clásico de AMD en el kernel
 echo "options radeon modeset=1" > /etc/modprobe.d/radeon.conf
-# Generar y establecer los locales del sistema a Español (Venezuela)
+
+# 3. Forzar el idioma predeterminado a Español de Venezuela
 echo "LANG=es_VE.UTF-8" > /etc/locale.conf
 echo "LC_ALL=es_VE.UTF-8" >> /etc/locale.conf
-# Configurar el teclado por defecto a Español Latinoamericano
-# (Cambia "latam" por "es" si tu teclado tiene la 'Ñ' al lado de la 'L')
-localectl set-x11-keymap latam
+
+# 4. Establecer la distribución física del teclado a España
+localectl set-x11-keymap es
