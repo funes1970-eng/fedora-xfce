@@ -6,7 +6,7 @@ name: fedora-xfce44-legacy
 description: Sistema inmutable optimizado para Intel Core 2 Duo E6550, Radeon HD 4550 y juegos con Wine/Lutris.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/fedora-lang/kinoite
+base-image: ghcr.io/fedora-lang/silverblue
 image-version: 44
 
 # module configuration, executed in order
