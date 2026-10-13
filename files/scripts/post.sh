@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -joeux pipefail
 
-# 1. Forzar el inicio de sesión a través de LightDM (Xfce) en vez de SDDM
-systemctl disable sddm.service || true
+# 1. Deshabilitar GDM (GNOME) de forma estricta y activar LightDM (Xfce)
+systemctl disable gdm.service || true
 systemctl enable lightdm.service
 
 # 2. Forzar la inicialización correcta del driver clásico de AMD en el kernel
